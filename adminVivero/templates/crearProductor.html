@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %} Crear Productor {% endblock %}
+
+{% block current1 %} <span class="sr-only">(current)</span> {% endblock %}
+
+{% block content %}
+
+<form method="post">
+    {% csrf_token %}
+    <div class="form-outline mb-4"> <!-- Documento de identidad productor -->
+        <label for="productor_id" class="control-label">Documento identidad</label>
+        <input type="number" class="form-control" id="productor_id" name="productor_id" placeholder="Documento de identidad" required />
+    </div>    
+
+    <div class="form-group"> <!-- Nombre productor-->
+        <label for="productor_nombre" class="control-label">Nombres</label>
+        <input type="text" class="form-control" id="productor_nombre" name="productor_nombre" placeholder="Nombres" required>
+    </div>                    
+                            
+    <div class="form-group"> <!-- Apellidos productor -->
+        <label for="productor_apellido" class="control-label">Apellidos</label>
+        <input type="text" class="form-control" id="productor_apellido" name="productor_apellido" placeholder="Apellidos", required>
+    </div>    
+
+    <div class="form-group"> <!-- Teléfono productor -->
+        <label for="productor_telefono" class="control-label">Teléfono contacto</label>
+        <input type="number" class="form-control" id="productor_telefono" name="productor_telefono" placeholder="Teléfono" required>
+    </div>                                    
+
+    <div class="form-group"> <!-- Correo productor -->
+        <label for="productor_correo" class="control-label">Correo Electronico</label>
+        <input type="email" class="form-control" id="productor_correo" name="productor_correo" required>
+    </div>        
+    
+    <div class="form-group"> <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Crear</button>
+    </div>     
+    
+</form>
+{% endblock %}

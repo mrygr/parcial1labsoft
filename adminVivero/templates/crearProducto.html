@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %} Crear Producto control {% endblock %}
+
+{% block current1 %} <span class="sr-only">(current)</span> {% endblock %}
+
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    
+    <div class="form-group"> <!-- Registro ICA del producto -->
+        <label for="producto_ICA" class="control-label">Registro ICA</label>
+        <input type="number" pattern="^[0-9]" min="1" step="1"  class="form-control" id="producto_ICA" name="producto_ICA" placeholder="ICA" required>
+    </div>   
+
+    <div class="form-group"> <!-- Nombre del producto -->
+        <label for="producto_nombre" class="control-label">Nombre del producto</label>
+        <input type="text" class="form-control" id="producto_nombre" name="producto_nombre" placeholder="Nombre" required>
+    </div>                    
+               
+    <div class="form-group"> <!-- Frecuencia de aplicación de producto -->
+        <label for="producto_frecuencia" class="control-label">Periodo de aplicación del producto</label>
+        <input type="number" pattern="^[0-9]" min="1" step="1"  class="form-control" id="producto_frecuencia" name="producto_frecuencia" placeholder="Días" required>
+    </div>   
+    
+    <div class="form-group"> <!-- Costo del producto en COP -->
+        <label for="producto_costo" class="control-label">Costo del producto</label>
+        <input type="number" pattern="^[0-9]" min="0.1" step="any"  class="form-control" id="producto_costo" name="producto_costo" placeholder="$COP" required>
+    </div>        
+    
+    <div class="form-group"> <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Crear</button>
+    </div>     
+    
+</form>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %} Ver productos de control {% endblock %}
+
+{% block current1 %} <span class="sr-only">(current)</span> {% endblock %}
+
+{% block content %}
+<h1>Productos de control Registrados</h1>
+<div class="table-responsive py-3">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Registro ICA</th>
+                <th>Nombre producto</th>
+                <th>Frecuencia de aplicación</th>
+                <th>Valor</th>
+                <th colspan="2">Opciones</th>                                           
+            </tr>
+        </thead>
+        <tbody>
+            {% for producto in productos %}
+            <tr> 
+                <td>{{producto.registro_ICA}}</td>
+                <td>{{producto.nombre_producto}}</td>
+                <td>{{producto.aplicacion_producto}}</td>
+                <td>${{producto.valor_producto}}</td>               
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %} Ver Fincas {% endblock %}
+
+{% block current1 %} <span class="sr-only">(current)</span> {% endblock %}
+
+{% block content %}
+<h1>Fincas Registradas</h1>
+<div class="table-responsive py-3">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Numero Catastro</th>
+                <th>Municipio Ubicación</th>
+                <th>Propietario</th>
+                <th colspan="2">Opciones</th>                                            
+            </tr>
+        </thead>
+        <tbody>
+            {% for finca in fincas %}
+            <tr>
+                <td>{{finca.numero_catastro}}</td>
+                <td>{{finca.municipio_ubicacion}}</td>
+                <td>{{finca.documento_productor.nombres_productor}} {{finca.documento_productor.apellidos_productor}}</td>
+                <td><a href="" class="btn btn-info">Ver detalle</a></td>                      
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div><!--editarLibros/{{libro.ISBN}}-->
+{% endblock %}

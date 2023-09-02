@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %} Crear Finca {% endblock %}
+
+{% block current1 %} <span class="sr-only">(current)</span> {% endblock %}
+
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    <div class="form-outline mb-4"> <!-- Numero de catastro de la finca -->
+        <label for="finca_id" class="control-label">Numero de catastro</label>
+        <input type="text" class="form-control" id="finca_id" name="finca_id" placeholder="Numero" required />
+    </div>    
+
+    <div class="form-group"> <!-- Departamento de ubicación de la finca -->
+        <label for="finca_ubicacion" class="control-label">Municipio de ubicación</label>
+        <input type="text" class="form-control" id="finca_ubicacion" name="finca_ubicacion" placeholder="Ubicación" required>
+    </div>                    
+               
+    <div class="form-group"> <!-- Propietario de la finca -->
+        <label for="state_id" class="control-label">Seleccione el Productor propietario</label>
+        <select class="form-control" name="seleccion_productor" required>
+            <option value="">----</option>
+            {% for productor in productores %}  
+            <option value="{{productor.documento_productor}}">{{productor.nombres_productor}} {{productor.apellidos_productor}}</option>
+            {% endfor %}
+        </select>                    
+    </div>    
+    
+    <div class="form-group"> <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Crear</button>
+    </div>     
+    
+</form>
+{% endblock %}

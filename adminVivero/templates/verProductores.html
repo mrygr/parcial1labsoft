@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %} Ver Productores {% endblock %}
+
+{% block current1 %} <span class="sr-only">(current)</span> {% endblock %}
+
+{% block content %}
+<h1>Productores Registrados</h1>
+<div class="table-responsive py-3">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Identificación</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Teléfono</th>   
+                <th>Email</th>
+                <th colspan="2">Opciones</th>                                            
+            </tr>
+        </thead>
+        <tbody>
+            {% for productor in productores %}
+            <tr>
+                <td>{{productor.documento_productor}}</td>
+                <td>{{productor.nombres_productor}}</td>
+                <td>{{productor.apellidos_productor}}</td>
+                <td>{{productor.telefono_productor}}</td>
+                <td>{{productor.correo_productor}}</td>
+                <td><a href="" class="btn btn-info">Ver detalle</a></td>                      
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

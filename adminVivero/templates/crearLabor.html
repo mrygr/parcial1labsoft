@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %} Crear Labor {% endblock %}
+
+{% block current1 %} <span class="sr-only">(current)</span> {% endblock %}
+
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    
+    <div class="form-group"> <!-- Fecha labor -->
+        <label for="labor_fecha" class="control-label">Fecha en que se realiza la labor</label>
+        <input type="date" class="form-control" id="labor_fecha" name="labor_fecha" placeholder="" required>
+    </div>   
+
+    <div class="form-group"> <!-- Descripción labor -->
+        <label for="labor_descripcion" class="control-label">Descripción Labor</label>
+        <textarea class="form-control" name="labor_descripcion" rows="10" cols="40" placeholder="Escriba una descripción" required></textarea>
+    </div>
+    
+    <div class="form-group"> <!-- Tipo de labor -->   
+        <label for="tipo_labor" class="control-label">Tipo de Labor</label>
+        <select class="form-control" name="tipo_labor" id="tipo_labor" onchange="mostrarCampoLabor();" required>
+            <option value="">----</option>
+            <option value="Control Plagas">Control de Plagas</option>
+            <option value="Control Hongos">Control de Hongos</option>
+            <option value="Control Fertilizante">Control de Fertilizantes</option>
+        </select>                    
+    </div>
+    
+    <div class="form-group"> <!-- Vivero dónde se va a realizar la labor -->
+        <label for="state_id" class="control-label">Seleccione el vivero de la finca donde se va a hacer la labor</label>
+        <select class="form-control" name="seleccion_vivero" required>
+            <option value="">----</option>
+            {% for vivero in viveros %}  
+            <option value="{{vivero.codigo_vivero}}">{{vivero.codigo_vivero}} - {{vivero.cultivo_vivero}}</option>
+            {% endfor %}
+        </select>                    
+    </div>    
+              
+    <div class="form-group">  <!-- producto a utilizar en la labor -->
+        <label for="state_id" class="control-label">Seleccione el producto a utilizar para la actividad</label>
+        <select class="form-control" name="seleccion_producto" required>
+            <option value="">----</option>
+            {% for producto in productos %}  
+            <option value="{{producto.registro_ICA}}">{{producto.nombre_producto}}</option>
+            {% endfor %}
+        </select>                    
+    </div>
+    
+    <div class="form-group" id="periodo" style="display:none;"> <!-- periodo carencia -->
+        <label for="vivero_cultivo" class="control-label">periodo de carencia</label>
+        <input type="number" class="form-control" pattern="^[0-9]" min="1" step="1" name="periodo_carencia" placeholder="" >
+    </div>
+
+    <div class="form-group" id="fechaAplica" style="display:none;" > <!-- fecha aplicación -->
+        <label for="fecha_aplicacion" class="control-label">fecha de aplicación de fertilizante</label>
+        <input type="date" class="form-control" name="fecha_aplicacion" >
+    </div>
+
+    <div class="form-group" id="nombreHongo" style="display:none;"> <!-- nombre del hongo -->
+        <label for="nombre_hongo" class="control-label">Nombre del hongo </label>
+        <input type="text" class="form-control" name="nombre_hongo" placeholder="--solo para control de hongos--" >
+    </div>    
+    
+    <div class="form-group"> <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Crear</button>
+    </div>     
+    
+</form>
+{% endblock %}
+
+
+

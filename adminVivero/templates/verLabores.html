@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %} Ver labores {% endblock %}
+
+{% block current1 %} <span class="sr-only">(current)</span> {% endblock %}
+
+{% block content %}
+<h1>Labores Registradas</h1>
+<div class="table-responsive py-3">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Fecha labor</th>
+                <th>Tipo labor</th>
+                <th>Descripción</th>
+                <th>Nombre del hongo</th>
+                <th>Periodo de carencia</th>
+                <th>fecha de aplicación fertilizante</th>
+                <th>Vivero tratado</th>
+                <th colspan="2">Opciones</th>                                           
+            </tr>
+        </thead>
+        <tbody>
+            {% for labor in labores %}
+            <tr>
+                <td>{{labor.fecha_labor}}</td>
+                <td>{{labor.tipo_labor}}</td>
+                <td>{{labor.descripcion_labor}}</td>
+                <td>{{labor.nombre_hongo}}</td>
+                <td>{{labor.periodo_carencia}}</td>
+                {% if labor.tipo_labor != 'Control Fertilizante' %}
+                <td>No aplica</td>
+                {% else %}
+                <td>{{labor.fecha_aplicacion}}</td>
+                {% endif %}
+                <td>{{labor.codigo_vivero.codigo_vivero}}</td>
+                <td><a href="" class="btn btn-info">Ver detalle</a></td>                      
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
