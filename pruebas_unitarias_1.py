@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Productor
+from models import Productor
 
 class ProductorTestCase(TestCase):
     def setUp(self):
