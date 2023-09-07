@@ -49,6 +49,17 @@ def crear_productor(request):
                 "crearProductor.html",
             )
 
+# Visualizar las fincas y vivieros que pertenecen a un productor (teniendo en cuenta su número de cédula)
+def ver_detalle_productor(request, id_productor):
+    #productor_detalles = Vivero.objects.filter(numero_catastro__documento_productor=id_productor).values('codigo_vivero', 'cultivo_vivero', 'numero_catastro')
+    lista_fincas = Finca.objects.select_related("documento_productor").filter(documento_productor = id_productor)
+    #print(lista_fincas.query)
+    #productor_detalles = Vivero.objects.select_related("numero_catastro__documento_productor").filter(documento_productor = id_productor)
+    #productor_detalles = Finca.objects.select_related("documento_productor").filter(documento_productor = id_productor).select_related()
+
+    return render(request, "verDetalleProductor.html", {"productor_fincas": lista_fincas})
+    
+
 
 #####################
 # Sección Fincas

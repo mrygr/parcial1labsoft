@@ -10,6 +10,7 @@ urlpatterns = [
     #Direccionamiento para los productores
     path('verProductores/', views.ver_productores, name='productor_ver'),
     path('crearProductor/', views.crear_productor, name='productor_crear'),
+    path('verProductores/verDetalleProductor/<id_productor>', views.ver_detalle_productor, name='productor_ver_detalle'),
 
     #Direccionamiento para las Fincas
     path('verFincas/', views.ver_fincas, name='finca_ver'),

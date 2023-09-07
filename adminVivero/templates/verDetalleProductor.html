@@ -1,11 +1,22 @@
 {% extends 'base.html' %}
 
-{% block title %} Ver Productores {% endblock %}
+{% block title %} Ver detalles productor {% endblock %}
 
 {% block current1 %} <span class="sr-only">(current)</span> {% endblock %}
 
 {% block content %}
-<h1>Productores Registrados</h1>
+
+
+
+<h1>Fincas</h1>
+
+{% for finca in productor_fincas %}
+    <p>Catastro: {{finca.numero_catastro}}</p>
+    <li>Ubicación: {{finca.municipio_ubicacion}}</li>
+    <a href="">Ver sus viveros</a>
+    <br><br>
+{% endfor %}
+<!--<h1>Nombre productor: {{productor_info}}</h1>
 <div class="table-responsive py-3">
     <table class="table table-striped">
         <thead>
@@ -26,10 +37,10 @@
                 <td>{{productor.apellidos_productor}}</td>
                 <td>{{productor.telefono_productor}}</td>
                 <td>{{productor.correo_productor}}</td>
-                <td><a href="verDetalleProductor/{{productor.documento_productor}}" class="btn btn-info">Ver fincas</a></td>                      
+                <td><a href="" class="btn btn-info">Ver detalle</a></td>                      
             </tr>
             {% endfor %}
         </tbody>
     </table>
-</div>
+</div>-->
 {% endblock %}
