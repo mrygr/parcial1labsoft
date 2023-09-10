@@ -10,7 +10,8 @@ urlpatterns = [
     #Direccionamiento para los productores
     path('verProductores/', views.ver_productores, name='productor_ver'),
     path('crearProductor/', views.crear_productor, name='productor_crear'),
-    path('verProductores/verDetalleProductor/<id_productor>', views.ver_detalle_productor, name='productor_ver_detalle'),
+    path('verProductores/verDetalleProductor/<id_productor>/<nombre_productor>/<apellido_productor>/', views.ver_detalle_productor, name='productor_ver_detalle'),    
+    path('verProductores/verDetalleProductor/<id_productor>/<nombre_productor>/<apellido_productor>/verDetalleProductorViveros/<id_finca>/', views.ver_detalle_productor_vivero, name='productor_ver_detalle_vivero'),
 
     #Direccionamiento para las Fincas
     path('verFincas/', views.ver_fincas, name='finca_ver'),

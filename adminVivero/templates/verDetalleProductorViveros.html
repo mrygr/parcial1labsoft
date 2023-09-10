@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %} Viveros finca {% endblock %}
+
+{% block current1 %} <span class="sr-only">(current)</span> {% endblock %}
+
+{% block content %}
+
+
+<h1>Catastro #{{numero_catastro}}</h1>
+<br>
+<h2>Viveros</h2>
+<br>
+
+
+<div class="row">
+    {% for vivero in finca_vivieros %}
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+            <h5 class="card-title">Código: {{vivero.codigo_vivero}}</h5>
+            <p class="card-text">Cultivo: {{vivero.cultivo_vivero}}</p>
+            <!--<a href="verDetalleProductorViveros/{{finca.numero_catastro}}/" class="btn btn-primary">Ver sus viveros</a>-->
+            </div>
+        </div>    
+    </div>    
+    {% endfor %}  
+</div>
+{% endblock %}

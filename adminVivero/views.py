@@ -49,16 +49,22 @@ def crear_productor(request):
                 "crearProductor.html",
             )
 
-# Visualizar las fincas y vivieros que pertenecen a un productor (teniendo en cuenta su número de cédula)
-def ver_detalle_productor(request, id_productor):
-    #productor_detalles = Vivero.objects.filter(numero_catastro__documento_productor=id_productor).values('codigo_vivero', 'cultivo_vivero', 'numero_catastro')
+# Visualizar las fincas que pertenecen a un productor (teniendo en cuenta su número de cédula)
+def ver_detalle_productor(request, id_productor, nombre_productor, apellido_productor):
     lista_fincas = Finca.objects.select_related("documento_productor").filter(documento_productor = id_productor)
+    
+    return render(request, "verDetalleProductor.html", {"productor_fincas": lista_fincas, 'nombres_productor': nombre_productor, 'apellidos_productor': apellido_productor,})
+
+# Visualizar los viveros que pertenecen a una finca (teniendo en cuenta su número de catastro)
+def ver_detalle_productor_vivero(request, id_productor, nombre_productor, apellido_productor, id_finca):
+    #productor_detalles = Vivero.objects.filter(numero_catastro__documento_productor=id_productor).values('codigo_vivero', 'cultivo_vivero', 'numero_catastro')
+
     #print(lista_fincas.query)
     #productor_detalles = Vivero.objects.select_related("numero_catastro__documento_productor").filter(documento_productor = id_productor)
     #productor_detalles = Finca.objects.select_related("documento_productor").filter(documento_productor = id_productor).select_related()
+    lista_viveros = Vivero.objects.select_related("numero_catastro").filter(numero_catastro = id_finca)
 
-    return render(request, "verDetalleProductor.html", {"productor_fincas": lista_fincas})
-    
+    return render(request, "verDetalleProductorViveros.html", {"finca_vivieros": lista_viveros, 'numero_catastro': id_finca,})
 
 
 #####################
