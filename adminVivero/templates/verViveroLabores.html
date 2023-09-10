@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %} Labores del vivero {% endblock %}
+
+{% block current1 %} <span class="sr-only">(current)</span> {% endblock %}
+
+{% block content %}
+<h1>Vivero {{codigo_vivero}}</h1>
+<p>Tipo cultivo: {{cultivo_vivero}}</p>
+<br>
+<h2>Labores asociadas</h2>
+<br>
+
+<div class="row">
+    {% for labor in labores %}
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+            <h5 class="card-title">ID labor: {{labor.id}}</h5>
+            <p class="card-text">Fecha labor: {{labor.fecha_labor}}</p>
+            <p class="card-text">Tipo: {{labor.tipo_labor}}</p>
+            {% if labor.tipo_labor == 'Control Hongos' %}
+            <p class="card-text">Nombre del hongo: {{labor.nombre_hongo}}</p>
+            {% elif  labor.tipo_labor == 'Control Plagas' %}
+            <p class="card-text">periodo de carencia: {{labor.periodo_carencia}} días</p>
+            {% elif  labor.tipo_labor == 'Control Fertilizante' %}
+            <p class="card-text">Fecha aplicación: {{labor.fecha_aplicacion}}</p>    
+            {% endif %}
+            <p class="card-text">Producto utilizado: {{labor.registro_ICA.nombre_producto}}</p>
+            <p class="card-text">Descripción labor: {{labor.descripcion_labor}}</p>
+            <!--<a href="verDetalleProductorViveros/{{finca.numero_catastro}}/" class="btn btn-primary">Ver sus viveros</a>-->
+            </div>
+        </div>    
+    </div>    
+    {% endfor %}  
+</div>
+{% endblock %}

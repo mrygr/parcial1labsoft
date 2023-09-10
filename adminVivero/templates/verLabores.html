@@ -13,6 +13,7 @@
                 <th>Fecha labor</th>
                 <th>Tipo labor</th>
                 <th>Descripción</th>
+                <th>Producto utilizado</th>
                 <th>Nombre del hongo</th>
                 <th>Periodo de carencia</th>
                 <th>fecha de aplicación fertilizante</th>
@@ -26,6 +27,7 @@
                 <td>{{labor.fecha_labor}}</td>
                 <td>{{labor.tipo_labor}}</td>
                 <td>{{labor.descripcion_labor}}</td>
+                <td>{{labor.registro_ICA.nombre_producto}}</td>
                 <td>{{labor.nombre_hongo}}</td>
                 <td>{{labor.periodo_carencia}}</td>
                 {% if labor.tipo_labor != 'Control Fertilizante' %}

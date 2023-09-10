@@ -19,6 +19,7 @@ urlpatterns = [
 
     #Direccionamiento para los vivieros
     path('verViveros/', views.ver_viveros, name='vivero_ver'),
+    path('verViveros/verLaboresVivero/<id_vivero>/<tipo_cultivo>/', views.ver_detalle_labor_vivero, name='vivero_ver_detalle_labores'), 
     path('crearVivero/', views.crear_vivero, name='vivero_crear'),
 
     #Direccionamiento para las labores

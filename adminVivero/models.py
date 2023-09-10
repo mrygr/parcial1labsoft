@@ -88,6 +88,7 @@ class Tarea(models.Model):
     codigo_vivero = models.ForeignKey(
         Vivero, null=False, blank=False, on_delete=models.CASCADE
     )
+    
     registro_ICA = models.ForeignKey(
         Producto, null=False, blank=False, on_delete=models.CASCADE
     )
