@@ -69,8 +69,14 @@ def ver_detalle_productor_vivero(request, id_productor, nombre_productor, apelli
 # Página para ver todos las fincas registradas en el sistema
 def ver_fincas(request):
     fincas_lista = Finca.objects.select_related("documento_productor")
-    # print(fincas_lista.query)
+    
     return render(request, "verFincas.html", {"fincas": fincas_lista})
+
+# Página para ver los viveros de una finca desde la sección "ver fincas"
+def ver_finca_viveros(request, id_finca):
+    lista_viveros = Vivero.objects.select_related("numero_catastro").filter(numero_catastro = id_finca)
+
+    return render(request, "verViverosFinca.html", {"finca_vivieros": lista_viveros, 'numero_catastro': id_finca,})
 
 
 # Página para crear una finca y asociarla a un productor
@@ -110,6 +116,7 @@ def crear_finca(request):
 # Página para ver todos los viveros registradas en el sistema
 def ver_viveros(request):
     viveros_lista = Vivero.objects.select_related("numero_catastro")
+
     return render(request, "verViveros.html", {"viveros": viveros_lista})
 
 
@@ -152,11 +159,11 @@ def ver_labores(request):
 
     return render(request, "verLabores.html", {"labores": labores_lista})
 
+# Página para ver todas las labores que están asociadas a un vivero seleccionado en "ver viveros"
 def ver_detalle_labor_vivero(request, id_vivero, tipo_cultivo):
     labores_lista = Tarea.objects.select_related("codigo_vivero").filter(codigo_vivero = id_vivero)
 
     return render(request, "verViveroLabores.html", {"labores": labores_lista, 'codigo_vivero': id_vivero, 'cultivo_vivero': tipo_cultivo,})
-
 
 # Página para crear una labor y asociarla al viviero y los productos que se van a utilizar
 def crear_labor(request):
@@ -181,6 +188,7 @@ def crear_labor(request):
         # Para control hongos: solo se guarda el tipo de hongo
         # Para control de fertilizante: solo se guarda la fecha del último fertilizante
         if request.POST["tipo_labor"] == "Control Plagas":
+            # Al seleccionar "control plagas" es obligatorio ingresar el periodo de carencia.
             if request.POST["periodo_carencia"] == "":
                 messages.error(
                     request,
@@ -197,6 +205,7 @@ def crear_labor(request):
             else:
                 per_carencia = request.POST["periodo_carencia"]
 
+        # Al seleccionar "control hongo" es obligatorio ingresar el nombre del hongo a tratar.
         elif request.POST["tipo_labor"] == "Control Hongos":
             if request.POST["nombre_hongo"] == "":
                 messages.error(
@@ -215,6 +224,7 @@ def crear_labor(request):
                 tip_hongo = request.POST["nombre_hongo"]
 
         elif request.POST["tipo_labor"] == "Control Fertilizante":
+            # Al seleccionar "control fertilizante" es obligatorio ingresar la fecha de aplicación
             if request.POST["fecha_aplicacion"] == "":
                 messages.error(
                     request,

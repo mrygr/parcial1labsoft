@@ -16,6 +16,7 @@ urlpatterns = [
     #Direccionamiento para las Fincas
     path('verFincas/', views.ver_fincas, name='finca_ver'),
     path('crearFinca/', views.crear_finca, name='finca_crear'),
+    path('verFincas/verViverosFinca/<id_finca>/', views.ver_finca_viveros, name='finca_ver_viveros'),
 
     #Direccionamiento para los vivieros
     path('verViveros/', views.ver_viveros, name='vivero_ver'),

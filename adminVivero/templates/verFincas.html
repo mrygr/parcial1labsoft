@@ -22,10 +22,10 @@
                 <td>{{finca.numero_catastro}}</td>
                 <td>{{finca.municipio_ubicacion}}</td>
                 <td>{{finca.documento_productor.nombres_productor}} {{finca.documento_productor.apellidos_productor}}</td>
-                <td><a href="" class="btn btn-info">Ver detalle</a></td>                      
+                <td><a href="verViverosFinca/{{finca.numero_catastro}}/" class="btn btn-info">Ver viveros</a></td>                      
             </tr>
             {% endfor %}
         </tbody>
     </table>
-</div><!--editarLibros/{{libro.ISBN}}-->
+</div>
 {% endblock %}
